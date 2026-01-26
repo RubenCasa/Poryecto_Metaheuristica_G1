@@ -99,7 +99,7 @@ También puedes usar los **botones y sliders** en el panel lateral para controla
 ## 📁 Estructura del Proyecto
 
 ```
-PRO_METAHERISTICA/
+/
 ├── main.py              # Punto de entrada principal
 ├── aco_algorithm.py     # Implementación del algoritmo ACO
 ├── environment.py       # Entorno y manejo de obstáculos
@@ -154,4 +154,5 @@ Este proyecto es de uso académico para la Universidad Nacional de Chimborazo.
 <p align="center">
   <b>🐜 "Las hormigas pequeñas pueden mover montañas grandes" 🐜</b>
 </p>
+
 
