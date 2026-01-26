@@ -136,29 +136,12 @@ Después de cada iteración:
 
 ---
 
-## 📸 Capturas de Pantalla
-
-*El simulador presenta una interfaz moderna con:*
-- Panel lateral con estadísticas y controles
-- Mapa de calor de feromonas con gradientes de color
-- Animación de hormigas buscando la ruta óptima
-- Efectos visuales de partículas
-
----
-
 ## 👨‍💻 Autor
 
 **Estudiante de la Universidad Nacional de Chimborazo**  
 Carrera: Ingeniería en Sistemas / Computación  
 Asignatura: Metaheurísticas  
 Año: 2026
-
----
-
-## 📚 Referencias
-
-- Dorigo, M., & Stützle, T. (2004). *Ant Colony Optimization*. MIT Press.
-- Colorni, A., Dorigo, M., & Maniezzo, V. (1991). *Distributed Optimization by Ant Colonies*.
 
 ---
 
@@ -171,3 +154,4 @@ Este proyecto es de uso académico para la Universidad Nacional de Chimborazo.
 <p align="center">
   <b>🐜 "Las hormigas pequeñas pueden mover montañas grandes" 🐜</b>
 </p>
+
