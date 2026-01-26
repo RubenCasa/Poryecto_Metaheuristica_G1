@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐜 Simulador ACO - UNACH</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Partículas de fondo -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">🐜</span>
+            <div class="logo-text">
+                <h1>SIMULADOR ACO</h1>
+                <p>Ant Colony Optimization</p>
+            </div>
+        </div>
+        <div class="university-badge">
+            <span class="badge-icon">🎓</span>
+            <div class="badge-text">
+                <span class="university-name">UNACH</span>
+                <span class="course-name">Metaheurísticas</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Canvas Container -->
+        <div class="canvas-container">
+            <div class="canvas-header">
+                <div class="scenario-info">
+                    <span class="scenario-icon">📍</span>
+                    <span class="scenario-name" id="scenarioName">Laberinto Simple</span>
+                </div>
+                <div class="status-display">
+                    <span class="status-indicator" id="simulationStatus">⏸ Pausado</span>
+                </div>
+                <div class="iteration-display">
+                    <span class="iteration-label">Iteración</span>
+                    <span class="iteration-value" id="iterationValue">0</span>
+                </div>
+            </div>
+
+            <!-- Banner de convergencia -->
+            <div class="convergence-banner hidden" id="convergenceBanner">
+                <div class="banner-content">
+                    <span class="banner-icon">🎉</span>
+                    <div class="banner-text">
+                        <h3>¡RUTA ÓPTIMA ENCONTRADA!</h3>
+                        <p>El algoritmo ha convergido a la mejor solución</p>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="acoCanvas"></canvas>
+            <div class="canvas-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00ff96;"></div>
+                    <span>Inicio (Nido)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ff3264;"></div>
+                    <span>Objetivo</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ffc832;"></div>
+                    <span>Hormigas</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color legend-gradient"></div>
+                    <span>Feromonas</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00ff00;"></div>
+                    <span>Mejor Ruta</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Panel -->
+        <aside class="control-panel">
+            <!-- Statistics Section -->
+            <section class="panel-section stats-section">
+                <h2 class="section-title">
+                    <span class="title-icon">📊</span>
+                    Estadísticas
+                </h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Mejor Costo</span>
+                        <span class="stat-value" id="bestCost">---</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Longitud Ruta</span>
+                        <span class="stat-value" id="pathLength">---</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Éxitos</span>
+                        <span class="stat-value" id="successfulAnts">0/30</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Max Feromona</span>
+                        <span class="stat-value" id="maxPheromone">0.10</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls Section -->
+            <section class="panel-section controls-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🎮</span>
+                    Controles
+                </h2>
+                <div class="button-group">
+                    <button class="control-btn primary" id="btnStart">
+                        <span class="btn-icon">▶</span>
+                        <span class="btn-text">INICIAR</span>
+                    </button>
+                    <button class="control-btn secondary" id="btnReset">
+                        <span class="btn-icon">↻</span>
+                        <span class="btn-text">RESET</span>
+                    </button>
+                </div>
+                <button class="control-btn scenario-btn" id="btnScenario">
+                    <span class="btn-icon">🗺️</span>
+                    <span class="btn-text">Cambiar Escenario</span>
+                </button>
+            </section>
+
+            <!-- Parameters Section -->
+            <section class="panel-section params-section">
+                <h2 class="section-title">
+                    <span class="title-icon">⚙️</span>
+                    Parámetros ACO
+                </h2>
+
+                <div class="param-control">
+                    <div class="param-header">
+                        <label>α (Feromona)</label>
+                        <span class="param-value" id="alphaValue">1.00</span>
+                    </div>
+                    <input type="range" class="slider" id="alphaSlider" min="0.1" max="5" step="0.1" value="1">
+                </div>
+
+                <div class="param-control">
+                    <div class="param-header">
+                        <label>β (Heurística)</label>
+                        <span class="param-value" id="betaValue">2.00</span>
+                    </div>
+                    <input type="range" class="slider" id="betaSlider" min="0.1" max="5" step="0.1" value="2">
+                </div>
+
+                <div class="param-control">
+                    <div class="param-header">
+                        <label>ρ (Evaporación)</label>
+                        <span class="param-value" id="evapValue">0.10</span>
+                    </div>
+                    <input type="range" class="slider" id="evapSlider" min="0.01" max="0.5" step="0.01" value="0.1">
+                </div>
+
+                <div class="param-control">
+                    <div class="param-header">
+                        <label>Hormigas</label>
+                        <span class="param-value" id="antsValue">30</span>
+                    </div>
+                    <input type="range" class="slider" id="antsSlider" min="5" max="100" step="5" value="30">
+                </div>
+
+                <div class="param-control">
+                    <div class="param-header">
+                        <label>Velocidad</label>
+                        <span class="param-value" id="speedValue">1x</span>
+                    </div>
+                    <input type="range" class="slider" id="speedSlider" min="0.5" max="5" step="0.5" value="1">
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="panel-section info-section">
+                <h2 class="section-title">
+                    <span class="title-icon">💡</span>
+                    Información
+                </h2>
+                <div class="info-content">
+                    <p>El algoritmo <strong>ACO</strong> simula el comportamiento de colonias de hormigas para encontrar
+                        rutas óptimas.</p>
+                    <p>Las hormigas depositan <span class="highlight">feromonas</span> en su camino, atrayendo a más
+                        hormigas hacia las mejores rutas.</p>
+                    <p>La simulación se <span class="highlight">detiene automáticamente</span> cuando encuentra la ruta
+                        óptima.</p>
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>🐜 Universidad Nacional de Chimborazo • Metaheurísticas 2026</p>
+    </footer>
+
+    <script src="aco.js"></script>
+</body>
+
+</html>
