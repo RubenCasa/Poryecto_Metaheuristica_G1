@@ -136,15 +136,6 @@ Después de cada iteración:
 
 ---
 
-## 👨‍💻 Autor
-
-**Estudiante de la Universidad Nacional de Chimborazo**  
-Carrera: Ingeniería en Sistemas / Computación  
-Asignatura: Metaheurísticas  
-Año: 2026
-
----
-
 ## 📄 Licencia
 
 Este proyecto es de uso académico para la Universidad Nacional de Chimborazo.
@@ -154,5 +145,6 @@ Este proyecto es de uso académico para la Universidad Nacional de Chimborazo.
 <p align="center">
   <b>🐜 "Las hormigas pequeñas pueden mover montañas grandes" 🐜</b>
 </p>
+
 
 
