@@ -12,7 +12,7 @@ const CONFIG = {
     // Grid
     GRID_ROWS: 25,
     GRID_COLS: 35,
-    CELL_SIZE: 20,
+    CELL_SIZE: 25,
 
     // Convergencia
     CONVERGENCE_ITERATIONS: 15,
@@ -150,10 +150,11 @@ const SCENARIOS = [
     },
     {
         name: "Logo UNACH",
-        description: "Obstáculos formando las letras U-N",
+        description: "Obstáculos formando las letras U-N-A-C-H",
         setup: (env) => {
             env.setStart(env.rows - 3, 2);
             env.setEnd(env.rows - 3, env.cols - 3);
+            // Marco
             for (let c = 0; c < env.cols; c++) {
                 env.addObstacle(0, c);
                 env.addObstacle(env.rows - 1, c);
@@ -162,21 +163,50 @@ const SCENARIOS = [
                 env.addObstacle(r, 0);
                 env.addObstacle(r, env.cols - 1);
             }
-            let startCol = 5;
+            // Letra U
+            let startCol = 3;
             for (let r = 5; r < 14; r++) {
                 env.addObstacle(r, startCol);
-                env.addObstacle(r, startCol + 4);
+                env.addObstacle(r, startCol + 3);
             }
-            for (let c = startCol; c < startCol + 5; c++) env.addObstacle(14, c);
-            startCol = 12;
+            for (let c = startCol; c < startCol + 4; c++) env.addObstacle(14, c);
+            // Letra N
+            startCol = 9;
             for (let r = 5; r < 15; r++) {
                 env.addObstacle(r, startCol);
-                env.addObstacle(r, startCol + 5);
+                env.addObstacle(r, startCol + 4);
             }
             env.addObstacle(7, startCol + 1);
             env.addObstacle(9, startCol + 2);
             env.addObstacle(11, startCol + 3);
-            env.addObstacle(13, startCol + 4);
+            // Letra A
+            startCol = 16;
+            for (let r = 5; r < 15; r++) {
+                env.addObstacle(r, startCol);
+                env.addObstacle(r, startCol + 3);
+            }
+            for (let c = startCol; c < startCol + 4; c++) {
+                env.addObstacle(5, c);
+                env.addObstacle(10, c);
+            }
+            // Letra C
+            startCol = 22;
+            for (let r = 5; r < 15; r++) {
+                env.addObstacle(r, startCol);
+            }
+            for (let c = startCol; c < startCol + 4; c++) {
+                env.addObstacle(5, c);
+                env.addObstacle(14, c);
+            }
+            // Letra H
+            startCol = 28;
+            for (let r = 5; r < 15; r++) {
+                env.addObstacle(r, startCol);
+                env.addObstacle(r, startCol + 3);
+            }
+            for (let c = startCol; c < startCol + 4; c++) {
+                env.addObstacle(10, c);
+            }
         }
     }
 ];

@@ -27,11 +27,7 @@
             </div>
         </div>
         <div class="university-badge">
-            <span class="badge-icon">🎓</span>
-            <div class="badge-text">
-                <span class="university-name">UNACH</span>
-                <span class="course-name">Metaheurísticas</span>
-            </div>
+            <img src="logo.png" alt="Logo UNACH" class="university-logo">
         </div>
     </header>
 
@@ -85,6 +81,16 @@
                 <div class="legend-item">
                     <div class="legend-color" style="background: #00ff00;"></div>
                     <span>Mejor Ruta</span>
+                </div>
+            </div>
+            <!-- Info Section dentro del canvas -->
+            <div class="canvas-info">
+                <div class="info-content-inline">
+                    <span class="info-icon">💡</span>
+                    <p>El algoritmo <strong>ACO</strong> simula colonias de hormigas. Las hormigas depositan <span
+                            class="highlight">feromonas</span> atrayendo más hormigas hacia las mejores rutas. La
+                        simulación se <span class="highlight">detiene automáticamente</span> al encontrar la ruta
+                        óptima.</p>
                 </div>
             </div>
         </div>
@@ -184,22 +190,6 @@
                         <span class="param-value" id="speedValue">1x</span>
                     </div>
                     <input type="range" class="slider" id="speedSlider" min="0.5" max="5" step="0.5" value="1">
-                </div>
-            </section>
-
-            <!-- Info Section -->
-            <section class="panel-section info-section">
-                <h2 class="section-title">
-                    <span class="title-icon">💡</span>
-                    Información
-                </h2>
-                <div class="info-content">
-                    <p>El algoritmo <strong>ACO</strong> simula el comportamiento de colonias de hormigas para encontrar
-                        rutas óptimas.</p>
-                    <p>Las hormigas depositan <span class="highlight">feromonas</span> en su camino, atrayendo a más
-                        hormigas hacia las mejores rutas.</p>
-                    <p>La simulación se <span class="highlight">detiene automáticamente</span> cuando encuentra la ruta
-                        óptima.</p>
                 </div>
             </section>
         </aside>
